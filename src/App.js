@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import logo from "./logo.svg"
+import logo from './Assets/arcane-alchemist-logo.png';
 import "./App.css"
 import Tilt from 'react-vanilla-tilt';
 
