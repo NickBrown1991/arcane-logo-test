@@ -1,12 +1,39 @@
-import logo from './Assets/arcane-alchemist-logo.png';
-import './App.css';
-import Tilt from 'react-vanilla-tilt';
+import React, { Component } from "react"
+import logo from "./logo.svg"
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <div className="App">
+class LambdaDemo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: false, msg: null }
+  }
+
+  handleClick = api => e => {
+    e.preventDefault()
+
+    this.setState({ loading: true })
+    fetch("/.netlify/functions/" + api)
+      .then(response => response.json())
+      .then(json => this.setState({ loading: false, msg: json.msg }))
+  }
+
+  render() {
+    const { loading, msg } = this.state
+
+    return (
+      <p>
+        Hi Sam
+      </p>
+    )
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <div className="App">
             <Tilt options={{ scale: 2 }}
             style={{
             width: 600,
@@ -15,9 +42,10 @@ function App() {
               <img src={logo} className="App-logo" alt="logo" />
             </Tilt>
           </div>
-      </header>
-    </div>
-  );
+        </header>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
